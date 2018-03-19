@@ -4,7 +4,7 @@ namespace Part1\Money;
 
 class Dollar
 {
-    public $amount;
+    public $amount = 10;
 
     public function __construct($amount)
     {
