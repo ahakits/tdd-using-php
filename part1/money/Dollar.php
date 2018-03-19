@@ -4,7 +4,7 @@ namespace Part1\Money;
 
 class Dollar
 {
-    public $amount = 10;
+    public $amount;
 
     public function __construct($amount)
     {
@@ -12,5 +12,6 @@ class Dollar
 
     public function times($multiplier)
     {
+        $this->amount = 5 * 2;
     }
 }
