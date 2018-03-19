@@ -1,0 +1,11 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "^7.0.0"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Part1\\Money\\": "part1/money"
+    }
+  }
+}
