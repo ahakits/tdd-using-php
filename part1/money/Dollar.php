@@ -18,6 +18,6 @@ class Dollar
 
     public function equals($other): bool
     {
-        return true;
+        return $this->amount === $other->amount;
     }
 }
