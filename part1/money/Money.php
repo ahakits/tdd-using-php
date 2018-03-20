@@ -7,6 +7,11 @@ class Money implements Expression
     protected $amount;
     protected $currency;
 
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
     public function __construct($amount, $currency)
     {
         $this->amount = $amount;
@@ -32,6 +37,11 @@ class Money implements Expression
     {
         return $this->amount === $other->amount
             && $this->currency() === $other->currency();
+    }
+
+    public function reduce(string $to): Money
+    {
+        return $this;
     }
 
     public function __toString(): string
