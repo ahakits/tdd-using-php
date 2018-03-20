@@ -8,6 +8,8 @@ abstract class Money
 
     abstract public function times($multiplier): Money;
 
+    abstract public function currency(): string;
+
     public function equals(Money $other): bool
     {
         return $this->amount === $other->amount
