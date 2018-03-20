@@ -2,10 +2,8 @@
 
 namespace Part1\Money;
 
-class Franc
+class Franc extends Money
 {
-    private $amount;
-
     public function __construct($amount)
     {
         $this->amount = $amount;
@@ -14,10 +12,5 @@ class Franc
     public function times($multiplier)
     {
         return new Franc($this->amount * $multiplier);
-    }
-
-    public function equals($other): bool
-    {
-        return $this->amount === $other->amount;
     }
 }
