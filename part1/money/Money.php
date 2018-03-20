@@ -5,10 +5,14 @@ namespace Part1\Money;
 abstract class Money
 {
     protected $amount;
+    protected $currency;
 
     abstract public function times($multiplier): Money;
 
-    abstract public function currency(): string;
+    public function currency(): string
+    {
+        return $this->currency;
+    }
 
     public function equals(Money $other): bool
     {
