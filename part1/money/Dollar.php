@@ -11,7 +11,7 @@ class Dollar extends Money
 
     public function currency(): string
     {
-        return "";
+        return "USD";
     }
 
 

@@ -11,7 +11,7 @@ class Franc extends Money
 
     public function currency(): string
     {
-        return "";
+        return "CHF";
     }
 
 
