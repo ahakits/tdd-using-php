@@ -26,7 +26,7 @@ class Money
     public function equals(Money $other): bool
     {
         return $this->amount === $other->amount
-            && get_class($this) === get_class($other);
+            && $this->currency() === $other->currency();
     }
 
     public function __toString(): string
