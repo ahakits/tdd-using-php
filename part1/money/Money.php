@@ -2,7 +2,7 @@
 
 namespace Part1\Money;
 
-abstract class Money
+class Money
 {
     protected $amount;
     protected $currency;
@@ -13,7 +13,10 @@ abstract class Money
         $this->currency = $currency;
     }
 
-    abstract public function times($multiplier): Money;
+    public function times(int $multiplier): Money
+    {
+        return null;
+    }
 
     public function currency(): string
     {
@@ -25,6 +28,12 @@ abstract class Money
         return $this->amount === $other->amount
             && get_class($this) === get_class($other);
     }
+
+    public function __toString(): string
+    {
+        return $this->amount . ' ' . $this->currency;
+    }
+
 
     public static function dollar(int $amount): Money
     {
