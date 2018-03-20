@@ -15,7 +15,7 @@ class Money
 
     public function times(int $multiplier): Money
     {
-        return null;
+        return new Money($this->amount * $multiplier, $this->currency);
     }
 
     public function currency(): string
