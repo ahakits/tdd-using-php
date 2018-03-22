@@ -14,9 +14,12 @@ class MoneyTest extends TestCase
     {
         $five = Money::dollar(5);
 
-        $this->assertTrue((Money::dollar(10))->equals($five->times(2)));
+        $bank = new Bank();
+        $result = ($five->times(2))->reduce($bank, "USD");
+        $this->assertTrue((Money::dollar(10))->equals($result));
 
-        $this->assertTrue((Money::dollar(15))->equals($five->times(3)));
+        $result = ($five->times(3))->reduce($bank, "USD");
+        $this->assertTrue((Money::dollar(15))->equals($result));
     }
 
     public function testEquality()
@@ -81,5 +84,31 @@ class MoneyTest extends TestCase
         $bank->addRate("CHF", "USD", 2);
         $result = $bank->reduce($fiveBucks->plus($tenFrancs), "USD");
         $this->assertTrue((Money::dollar(10)->equals($result)));
+    }
+
+    public function testSumPlusMoney()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+
+        $bank = new Bank();
+        $bank->addRate("CHF", "USD", 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->plus($fiveBucks);
+
+        $result = $bank->reduce($sum, "USD");
+        $this->assertTrue(Money::dollar(15)->equals($result));
+    }
+
+    public function testSumTimes()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+
+        $bank = new Bank();
+        $bank->addRate("CHF", "USD", 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->times(2);
+
+        $result = $bank->reduce($sum, "USD");
+        $this->assertTrue(Money::dollar(20)->equals($result));
     }
 }

@@ -4,8 +4,8 @@ namespace Part1\Money;
 
 class Sum implements Expression
 {
-    public $augend;
-    public $addend;
+    private $augend;
+    private $addend;
 
     public function __construct(Expression $augend, Expression $addend)
     {
@@ -13,9 +13,17 @@ class Sum implements Expression
         $this->addend = $addend;
     }
 
+    public function times(int $multiplier): Expression
+    {
+        return new Sum(
+            $this->augend->times($multiplier),
+            $this->addend->times($multiplier)
+        );
+    }
+
     public function plus(Expression $addend): Expression
     {
-        return null;
+        return new Sum($this, $addend);
     }
 
     public function reduce(Bank $bank, string $to): Money
