@@ -14,9 +14,12 @@ class MoneyTest extends TestCase
     {
         $five = Money::dollar(5);
 
-        $this->assertTrue((Money::dollar(10))->equals($five->times(2)));
+        $bank = new Bank();
+        $result = ($five->times(2))->reduce($bank, "USD");
+        $this->assertTrue((Money::dollar(10))->equals($result));
 
-        $this->assertTrue((Money::dollar(15))->equals($five->times(3)));
+        $result = ($five->times(3))->reduce($bank, "USD");
+        $this->assertTrue((Money::dollar(15))->equals($result));
     }
 
     public function testEquality()
