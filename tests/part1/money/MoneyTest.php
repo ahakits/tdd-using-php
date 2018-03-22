@@ -43,15 +43,6 @@ class MoneyTest extends TestCase
         $this->assertEquals(Money::dollar(10), $reduced);
     }
 
-    public function testPlusReturnSum()
-    {
-        $five = Money::dollar(5);
-        $sum = $five->plus($five);
-
-        $this->assertEquals($five, $sum->augend);
-        $this->assertEquals($five, $sum->addend);
-    }
-
     public function testReduceSum()
     {
         $sum = new Sum(Money::dollar(3), Money::dollar(4));
@@ -79,5 +70,16 @@ class MoneyTest extends TestCase
     public function testIdentityRate()
     {
         $this->assertEquals(1, (new Bank())->rate("USD", "USD"));
+    }
+
+    public function testMixedAddition()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+
+        $bank = new Bank();
+        $bank->addRate("CHF", "USD", 2);
+        $result = $bank->reduce($fiveBucks->plus($tenFrancs), "USD");
+        $this->assertTrue((Money::dollar(10)->equals($result)));
     }
 }
