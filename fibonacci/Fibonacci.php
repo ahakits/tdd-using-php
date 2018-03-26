@@ -9,6 +9,10 @@ class Fibonacci
 {
     public static function fib(int $n): int
     {
-        return 0;
+        if ($n === 0) {
+            return 0;
+        }
+
+        return 1;
     }
 }
